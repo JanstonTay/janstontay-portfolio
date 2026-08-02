@@ -499,6 +499,25 @@ button,input,textarea,select{font:inherit;color:inherit}
           <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center">
             <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Participant</span>
             <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Team Project</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--gold)">May 2026 – Jul 2026</span>
+          </div>
+          <h3 style="margin-top:15px;font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">PolyFinTech100 API Hackathon 2026</h3>
+          <p style="margin-top:8px;font-size:15px;color:var(--text-2);line-height:1.65">OCBC challenge — <strong style="font-weight:600;color:var(--text)">autonomous, decision-making AI across customer journeys</strong>. Our team worked on a viable AI-agent concept designed to anticipate customer needs, personalise experiences continuously, deliver better advice and faster decisions, and keep humans in control.</p>
+        </div>
+        <div style="flex:1 1 260px;min-width:min(100%,260px);padding:clamp(24px,3vw,32px);background:var(--bg-alt);border-left:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">Skills developed</div>
+          <ul style="margin-top:13px;display:grid;gap:8px">
+            <sc-for list="{{ ocbcSkills }}" as="s" hint-placeholder-count="6">
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2)"><span aria-hidden="true" style="flex:none;margin-top:8px;width:5px;height:5px;border-radius:50%;background:var(--teal)"></span>{{ s }}</li>
+            </sc-for>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:0;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);overflow:hidden">
+        <div style="flex:1 1 300px;min-width:min(100%,280px);padding:clamp(24px,3vw,32px)">
+          <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center">
+            <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Participant</span>
+            <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Team Project</span>
             <span style="font-family:var(--mono);font-size:11.5px;color:var(--gold)">Sep 2025 – Nov 2025</span>
           </div>
           <h3 style="margin-top:15px;font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">HacX Hackathon</h3>
@@ -518,34 +537,15 @@ button,input,textarea,select{font:inherit;color:inherit}
           <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center">
             <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Participant</span>
             <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Team Project</span>
-            <span style="font-family:var(--mono);font-size:11.5px;color:var(--gold)">2025</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--gold)">May 2025 – Jul 2025</span>
           </div>
-          <h3 style="margin-top:15px;font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">PolyFinTech100 API Hackathon</h3>
+          <h3 style="margin-top:15px;font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">PolyFinTech100 API Hackathon 2025</h3>
           <p style="margin-top:8px;font-size:15px;color:var(--text-2);line-height:1.65">UBS Smart Wealth Management challenge — <strong style="font-weight:600;color:var(--text)">AI-enabled Wealth Management Services</strong>. Our team worked on applying AI to deliver more personalized financial advice, improve portfolio and risk management, and enhance bespoke client support for high-net-worth individuals.</p>
         </div>
         <div style="flex:1 1 260px;min-width:min(100%,260px);padding:clamp(24px,3vw,32px);background:var(--bg-alt);border-left:1px solid var(--border)">
           <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">Skills developed</div>
           <ul style="margin-top:13px;display:grid;gap:8px">
             <sc-for list="{{ fintechSkills }}" as="s" hint-placeholder-count="6">
-              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2)"><span aria-hidden="true" style="flex:none;margin-top:8px;width:5px;height:5px;border-radius:50%;background:var(--teal)"></span>{{ s }}</li>
-            </sc-for>
-          </ul>
-        </div>
-      </div>
-      <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:0;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);overflow:hidden">
-        <div style="flex:1 1 300px;min-width:min(100%,280px);padding:clamp(24px,3vw,32px)">
-          <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center">
-            <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Participant</span>
-            <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Team Project</span>
-            <span style="font-family:var(--mono);font-size:11.5px;color:var(--gold)">2026</span>
-          </div>
-          <h3 style="margin-top:15px;font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">PolyFinTech100 API Hackathon 2026</h3>
-          <p style="margin-top:8px;font-size:15px;color:var(--text-2);line-height:1.65">OCBC challenge — <strong style="font-weight:600;color:var(--text)">autonomous, decision-making AI across customer journeys</strong>. Our team worked on a viable AI-agent concept designed to anticipate customer needs, personalise experiences continuously, deliver better advice and faster decisions, and keep humans in control.</p>
-        </div>
-        <div style="flex:1 1 260px;min-width:min(100%,260px);padding:clamp(24px,3vw,32px);background:var(--bg-alt);border-left:1px solid var(--border)">
-          <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">Skills developed</div>
-          <ul style="margin-top:13px;display:grid;gap:8px">
-            <sc-for list="{{ ocbcSkills }}" as="s" hint-placeholder-count="6">
               <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2)"><span aria-hidden="true" style="flex:none;margin-top:8px;width:5px;height:5px;border-radius:50%;background:var(--teal)"></span>{{ s }}</li>
             </sc-for>
           </ul>
@@ -731,8 +731,21 @@ const INTERN_POINTS = [
 const INTERN_TAGS = ["Python", "UiPath", "Generative AI", "Process Digitalisation", "Data & Analytics", "Technical Support"];
 const PROJECTS = [
   {
+    id: "polyconnect", repositoryUrl: "", liveUrl: "https://polyconnect-web-v32y.onrender.com/desktop/login.html", caseStudyUrl: "",
+    num: "[ 01 ]", title: "Poly Connect", subtitle: "Student Community Platform",
+    category: "Full-Stack Development · Student Platform", date: "Apr 2026 – Aug 2026",
+    role: "Full-stack development",
+    summary: "A responsive community platform that helps students across Singapore’s five polytechnics discover people, form teams, join activities and stay connected through chat.",
+    tags: ["Student Networking", "Responsive Design", "Authentication", "Community Platform"],
+    details: [
+      { label: "Objective", text: "Create one student-focused platform for building connections and finding relevant communities across Singapore’s polytechnics." },
+      { label: "Core experience", items: ["Polytechnic-specific account onboarding", "People and community discovery", "Team and activity coordination", "Chats and student profiles"] },
+      { label: "Responsive flows", items: ["Dedicated desktop and mobile entry experiences", "Multi-step sign-up and login", "Email verification and password recovery", "Light and dark theme support"] }
+    ]
+  },
+  {
     id: "dinokingdom", repositoryUrl: "", liveUrl: "https://dino-kingdom.vercel.app/", caseStudyUrl: "",
-    num: "[ 01 ]", title: "DinoKingdom", subtitle: "Health and Wellness Game",
+    num: "[ 02 ]", title: "DinoKingdom", subtitle: "Health and Wellness Game",
     category: "Back-End Development · School Project", date: "Jan 2026 – Feb 2026",
     role: "Backend development",
     summary: "A dinosaur-themed web application developed for my Back-End Development module. The project focused on database management, API routes, user interactions and server-side logic.",
@@ -746,23 +759,9 @@ const PROJECTS = [
     ]
   },
   {
-    id: "point-cloud-annotation-studio", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
-    num: "[ 02 ]", title: "Point Cloud Annotation Studio", subtitle: "HacX Hackathon",
-    category: "Hackathon · Team Project · Participant", date: "Sep 2025 – Nov 2025",
-    role: "Team member — prototyping & integration",
-    summary: "An open-source concept for real-time 3D point-cloud tagging, automated floor-plan generation and AI-assisted evidence analysis, built for the CS12 Forensic Mapping challenge.",
-    tags: ["3D Visualisation", "Geospatial", "API Integration", "Prototyping"],
-    details: [
-      { label: "Problem", text: "Challenge CS12 asked teams to make forensic scene mapping faster and more legible for investigators working from raw 3D scans." },
-      { label: "My contribution", items: ["Worked on the point-cloud tagging concept with the team", "Explored API integration for the analysis pipeline", "Helped shape and present the technical idea to judges"] },
-      { label: "Approach", items: ["Real-time tagging over a 3D point cloud", "Automated floor-plan generation from scan data", "AI-assisted evidence analysis as a supporting layer"] },
-      { label: "Lessons learned", items: ["Scoping an ambitious idea down to a demonstrable prototype", "Collaborating under hackathon time pressure", "Communicating technical decisions clearly and briefly"] }
-    ]
-  },
-  {
     id: "stubby", repositoryUrl: "", liveUrl: "https://stubby-matchmaking.vercel.app/", caseStudyUrl: "",
     num: "[ 03 ]", title: "Stubby", subtitle: "Matchmaking Application",
-    category: "UI/UX Design · School Project", date: "Design Experience and User Interface",
+    category: "UI/UX Design · School Project", date: "Oct 2025 – Jan 2026",
     role: "UI/UX design & prototyping",
     summary: "A matchmaking web application taken from interface planning and prototyping through to a publicly deployed version on Vercel.",
     tags: ["UI/UX", "Prototyping", "Responsive Design", "Vercel"],
@@ -774,16 +773,17 @@ const PROJECTS = [
     ]
   },
   {
-    id: "polyconnect", repositoryUrl: "", liveUrl: "https://polyconnect-web-v32y.onrender.com/desktop/login.html", caseStudyUrl: "",
-    num: "[ 04 ]", title: "Poly Connect", subtitle: "Student Community Platform",
-    category: "Full-Stack Development · Student Platform", date: "",
-    role: "Full-stack development",
-    summary: "A responsive community platform that helps students across Singapore’s five polytechnics discover people, form teams, join activities and stay connected through chat.",
-    tags: ["Student Networking", "Responsive Design", "Authentication", "Community Platform"],
+    id: "point-cloud-annotation-studio", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
+    num: "[ 04 ]", title: "Point Cloud Annotation Studio", subtitle: "HacX Hackathon",
+    category: "Hackathon · Team Project · Participant", date: "Sep 2025 – Nov 2025",
+    role: "Team member — prototyping & integration",
+    summary: "An open-source concept for real-time 3D point-cloud tagging, automated floor-plan generation and AI-assisted evidence analysis, built for the CS12 Forensic Mapping challenge.",
+    tags: ["3D Visualisation", "Geospatial", "API Integration", "Prototyping"],
     details: [
-      { label: "Objective", text: "Create one student-focused platform for building connections and finding relevant communities across Singapore’s polytechnics." },
-      { label: "Core experience", items: ["Polytechnic-specific account onboarding", "People and community discovery", "Team and activity coordination", "Chats and student profiles"] },
-      { label: "Responsive flows", items: ["Dedicated desktop and mobile entry experiences", "Multi-step sign-up and login", "Email verification and password recovery", "Light and dark theme support"] }
+      { label: "Problem", text: "Challenge CS12 asked teams to make forensic scene mapping faster and more legible for investigators working from raw 3D scans." },
+      { label: "My contribution", items: ["Worked on the point-cloud tagging concept with the team", "Explored API integration for the analysis pipeline", "Helped shape and present the technical idea to judges"] },
+      { label: "Approach", items: ["Real-time tagging over a 3D point cloud", "Automated floor-plan generation from scan data", "AI-assisted evidence analysis as a supporting layer"] },
+      { label: "Lessons learned", items: ["Scoping an ambitious idea down to a demonstrable prototype", "Collaborating under hackathon time pressure", "Communicating technical decisions clearly and briefly"] }
     ]
   }
 ];
@@ -802,6 +802,7 @@ const EDU_FACTS = [
   { label: "Expected graduation", value: "April 2028" }
 ];
 const SECONDARY_EDU_FACTS = [
+  { label: "Period", value: "2021–2024" },
   { label: "Qualification", value: "GCE O-Level" },
   { label: "Status", value: "Graduated" }
 ];
