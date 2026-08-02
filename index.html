@@ -443,17 +443,27 @@ button,input,textarea,select{font:inherit;color:inherit}
         </div>
       </div>
 
-      <div style="margin-top:18px;padding:clamp(24px,3vw,32px);border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow)">
-        <h3 style="font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">Hai Sing Catholic School</h3>
-        <p style="margin-top:6px;font-size:15px;color:var(--text-2)">Secondary Education · GCE O-Level</p>
-        <dl style="margin:22px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px">
-          <sc-for list="{{ secondaryEduFacts }}" as="f" hint-placeholder-count="3">
-            <div>
-              <dt style="font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">{{ f.label }}</dt>
-              <dd style="margin:5px 0 0;font-family:var(--display);font-size:17px;font-weight:600;color:var(--text)">{{ f.value }}</dd>
-            </div>
-          </sc-for>
-        </dl>
+      <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:18px">
+        <div style="flex:1 1 340px;min-width:min(100%,300px);padding:clamp(24px,3vw,32px);border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow)">
+          <h3 style="font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">Hai Sing Catholic School</h3>
+          <p style="margin-top:6px;font-size:15px;color:var(--text-2)">Secondary Education · GCE O-Level</p>
+          <dl style="margin:22px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px">
+            <sc-for list="{{ secondaryEduFacts }}" as="f" hint-placeholder-count="2">
+              <div>
+                <dt style="font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">{{ f.label }}</dt>
+                <dd style="margin:5px 0 0;font-family:var(--display);font-size:17px;font-weight:600;color:var(--text)">{{ f.value }}</dd>
+              </div>
+            </sc-for>
+          </dl>
+        </div>
+        <div style="flex:1 1 340px;min-width:min(100%,300px);padding:clamp(24px,3vw,32px);border-radius:var(--r);border:1px solid var(--border);background:var(--bg-alt)">
+          <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">Academic achievement</div>
+          <div style="margin-top:18px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+            <span style="font-family:var(--display);font-size:clamp(32px,4vw,44px);font-weight:700;letter-spacing:-.03em;color:var(--text)">7</span>
+            <span style="font-family:var(--display);font-size:17px;font-weight:600;color:var(--text)">GCE O-Level credits</span>
+          </div>
+          <p style="margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--text-2)">Obtained upon graduating from Hai Sing Catholic School.</p>
+        </div>
       </div>
 
       <h3 id="certifications" style="margin-top:56px;display:flex;align-items:baseline;gap:12px;font-family:var(--display);font-size:clamp(19px,2.2vw,23px);font-weight:600;letter-spacing:-.02em;scroll-margin-top:100px">
@@ -755,7 +765,6 @@ const EDU_FACTS = [
 ];
 const SECONDARY_EDU_FACTS = [
   { label: "Qualification", value: "GCE O-Level" },
-  { label: "Result", value: "7 credits" },
   { label: "Status", value: "Graduated" }
 ];
 const MODULES = ["Front-End Web Development", "Back-End Web Development", "Software Engineering Practice", "Continuous Integration and Continuous Delivery", "Design Experience and User Interface", "Programming for Data Science", "Java Programming", "Database Systems", "Secure Coding"];
