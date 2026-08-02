@@ -323,12 +323,12 @@ button,input,textarea,select{font:inherit;color:inherit}
     <section id="work" style="padding:var(--sec-gap) 0 0">
       <div style="display:flex;align-items:baseline;gap:14px">
         <span style="font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.08em">[ 03 ]</span>
-        <h2 style="font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.03em">Selected Work</h2>
+        <h2 style="font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.03em">Projects</h2>
         <span aria-hidden="true" style="flex:1;height:1px;background:var(--border)"></span>
       </div>
       <p style="margin-top:18px;max-width:60ch;font-size:15.5px;line-height:1.7;color:var(--text-2)">School, hackathon and coursework projects. Each entry describes what I actually built and what I took away from it.</p>
       <div style="margin-top:40px;display:grid;gap:18px">
-        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
           <article style="border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .25s ease">
             <div style="padding:clamp(22px,2.6vw,30px)">
               <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px">
@@ -617,7 +617,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 const PRIMARY = [
   { label: "About", href: "#about", id: "about" },
   { label: "Experience", href: "#experience", id: "experience" },
-  { label: "Work", href: "#work", id: "work" },
+  { label: "Projects", href: "#work", id: "work" },
   { label: "Skills", href: "#skills", id: "skills" }
 ];
 const MORE = [
@@ -631,7 +631,7 @@ const MORE = [
 const ALL_NAV = [
   { num: "01", label: "About", href: "#about" },
   { num: "02", label: "Experience", href: "#experience" },
-  { num: "03", label: "Selected Work", href: "#work" },
+  { num: "03", label: "Projects", href: "#work" },
   { num: "04", label: "Skills", href: "#skills" },
   { num: "05", label: "Education", href: "#education" },
   { num: "06", label: "Competitions", href: "#competitions" },
@@ -670,7 +670,7 @@ const INTERN_POINTS = [
 const INTERN_TAGS = ["Python", "UiPath", "Generative AI", "Process Digitalisation", "Data & Analytics", "Technical Support"];
 const PROJECTS = [
   {
-    id: "dinokingdom", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
+    id: "dinokingdom", repositoryUrl: "", liveUrl: "https://dino-kingdom.vercel.app/", caseStudyUrl: "",
     num: "[ 01 ]", title: "DinoKingdom", subtitle: "Health and Wellness Game",
     category: "Back-End Development · School Project", date: "Jan 2026 – Feb 2026",
     role: "Backend development",
@@ -699,7 +699,7 @@ const PROJECTS = [
     ]
   },
   {
-    id: "stubby", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
+    id: "stubby", repositoryUrl: "", liveUrl: "https://stubby-matchmaking.vercel.app/", caseStudyUrl: "",
     num: "[ 03 ]", title: "Stubby", subtitle: "Matchmaking Application",
     category: "UI/UX Design · School Project", date: "Design Experience and User Interface",
     role: "UI/UX design & prototyping",
@@ -710,6 +710,19 @@ const PROJECTS = [
       { label: "My contribution", items: ["User-flow planning and interface layout", "Visual consistency across screens", "Prototyping and iteration on the design"] },
       { label: "Outcome", text: "The design was carried from concept through prototype to a deployed experience on Vercel." },
       { label: "Lessons learned", items: ["Deciding what belongs on a screen and what does not", "Keeping a design system consistent as screens multiply", "The gap between a prototype and a deployed build"] }
+    ]
+  },
+  {
+    id: "polyconnect", repositoryUrl: "", liveUrl: "https://polyconnect-web-v32y.onrender.com/desktop/login.html", caseStudyUrl: "",
+    num: "[ 04 ]", title: "Poly Connect", subtitle: "Student Community Platform",
+    category: "Full-Stack Development · Student Platform", date: "",
+    role: "Full-stack development",
+    summary: "A responsive community platform that helps students across Singapore’s five polytechnics discover people, form teams, join activities and stay connected through chat.",
+    tags: ["Student Networking", "Responsive Design", "Authentication", "Community Platform"],
+    details: [
+      { label: "Objective", text: "Create one student-focused platform for building connections and finding relevant communities across Singapore’s polytechnics." },
+      { label: "Core experience", items: ["Polytechnic-specific account onboarding", "People and community discovery", "Team and activity coordination", "Chats and student profiles"] },
+      { label: "Responsive flows", items: ["Dedicated desktop and mobile entry experiences", "Multi-step sign-up and login", "Email verification and password recovery", "Light and dark theme support"] }
     ]
   }
 ];
