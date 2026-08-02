@@ -532,6 +532,25 @@ button,input,textarea,select{font:inherit;color:inherit}
           </ul>
         </div>
       </div>
+      <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:0;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);overflow:hidden">
+        <div style="flex:1 1 300px;min-width:min(100%,280px);padding:clamp(24px,3vw,32px)">
+          <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center">
+            <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Participant</span>
+            <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Team Project</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--gold)">2026</span>
+          </div>
+          <h3 style="margin-top:15px;font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">PolyFinTech100 API Hackathon 2026</h3>
+          <p style="margin-top:8px;font-size:15px;color:var(--text-2);line-height:1.65">OCBC challenge — <strong style="font-weight:600;color:var(--text)">autonomous, decision-making AI across customer journeys</strong>. Our team worked on a viable AI-agent concept designed to anticipate customer needs, personalise experiences continuously, deliver better advice and faster decisions, and keep humans in control.</p>
+        </div>
+        <div style="flex:1 1 260px;min-width:min(100%,260px);padding:clamp(24px,3vw,32px);background:var(--bg-alt);border-left:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">Skills developed</div>
+          <ul style="margin-top:13px;display:grid;gap:8px">
+            <sc-for list="{{ ocbcSkills }}" as="s" hint-placeholder-count="6">
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2)"><span aria-hidden="true" style="flex:none;margin-top:8px;width:5px;height:5px;border-radius:50%;background:var(--teal)"></span>{{ s }}</li>
+            </sc-for>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section id="recognition" style="padding:var(--sec-gap) 0 0">
@@ -794,6 +813,7 @@ const CERTS = [
 ];
 const HACX_SKILLS = ["Geospatial mapping", "3D visualisation", "API integration", "Rapid prototyping", "Teamwork", "Technical presentation"];
 const FINTECH_SKILLS = ["FinTech problem solving", "AI solution design", "Wealth management", "Financial data analysis", "Risk assessment", "Teamwork"];
+const OCBC_SKILLS = ["Agentic AI concept design", "Customer journey design", "Personalisation", "Financial services", "Human-in-the-loop design", "Teamwork"];
 const LEADERSHIP = [
   "Executive Committee member of the society.",
   "Supported day-to-day club operations.",
@@ -904,6 +924,7 @@ class Component extends DCLogic {
       certs: CERTS,
       hacxSkills: HACX_SKILLS,
       fintechSkills: FINTECH_SKILLS,
+      ocbcSkills: OCBC_SKILLS,
       leadership: LEADERSHIP,
       community: COMMUNITY,
       visibleTerm: TERM.slice(0, s.termStep),
