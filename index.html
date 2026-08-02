@@ -61,6 +61,45 @@ a{color:var(--teal);text-decoration:none}
 a:hover{color:var(--teal-bright)}
 button,input,textarea,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+.theme-toggle{
+  border:1px solid rgba(242,246,248,.25);
+  background:#2D4256;
+  color:#F2F6F8;
+  opacity:1;
+  mix-blend-mode:normal;
+  isolation:isolate;
+  transition:background-color .2s ease,border-color .2s ease,color .2s ease;
+}
+.theme-toggle:hover,.theme-toggle:active{
+  border-color:rgba(242,246,248,.25);
+  background:#3A5368;
+  color:#F2F6F8;
+  opacity:1;
+}
+.theme-toggle:focus-visible{
+  outline:2px solid rgba(201,217,228,.30);
+  outline-offset:3px;
+  opacity:1;
+}
+.theme-toggle__icon,.theme-toggle__icon *{
+  color:inherit;
+  opacity:1;
+  mix-blend-mode:normal;
+}
+.theme-toggle__icon{width:20px;height:20px;pointer-events:none}
+[data-theme="light"] .theme-toggle{
+  border-color:rgba(23,63,88,.25);
+  background:#F7FAFA;
+  color:#173F58;
+}
+[data-theme="light"] .theme-toggle:hover,[data-theme="light"] .theme-toggle:active{
+  border-color:rgba(23,63,88,.25);
+  background:#DCECEF;
+  color:#173F58;
+}
+[data-theme="light"] .theme-toggle:focus-visible{
+  outline-color:rgba(23,63,88,.25);
+}
 ::selection{background:rgba(201,217,228,.26)}
 @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -111,7 +150,15 @@ button,input,textarea,select{font:inherit;color:inherit}
           </li>
         </ul>
         <div style="width:1px;height:22px;background:var(--border);margin:0 6px"></div>
-        <button type="button" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" title="{{ themeLabel }}" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer;display:grid;place-items:center;font-size:14px" style-hover="border-color:var(--teal);color:var(--teal)">{{ themeIcon }}</button>
+        <button class="theme-toggle" type="button" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" title="{{ themeLabel }}" style="width:36px;height:36px;border-radius:10px;cursor:pointer;display:grid;place-items:center">
+          <svg aria-hidden="true" focusable="false" class="theme-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="display:{{ moonIconDisplay }}">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path>
+          </svg>
+          <svg aria-hidden="true" focusable="false" class="theme-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="display:{{ sunIconDisplay }}">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+          </svg>
+        </button>
         <button type="button" onClick="{{ resumeNotice }}" title="Résumé PDF — replace with your file" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:11px;border:1px solid var(--border-strong);background:var(--btn-bg);color:var(--btn-fg);font-size:13.5px;font-weight:600;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-1px);box-shadow:0 10px 22px -12px rgba(3,14,25,.72)">Résumé<span aria-hidden="true" style="font-family:var(--mono);font-size:11px;color:var(--teal-bright)">↗</span></button>
       </div>
 
@@ -468,10 +515,10 @@ button,input,textarea,select{font:inherit;color:inherit}
         <h2 style="font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.03em">Leadership &amp; Community</h2>
         <span aria-hidden="true" style="flex:1;height:1px;background:var(--border)"></span>
       </div>
-      <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start">
-        <div style="flex:1 1 380px;min-width:min(100%,300px)">
+      <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:18px;align-items:stretch">
+        <div style="flex:1 1 380px;min-width:min(100%,300px);display:flex;flex-direction:column">
           <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Leadership</div>
-          <div style="padding:clamp(24px,3vw,30px);border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow)">
+          <div style="padding:clamp(24px,3vw,30px);border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);flex:1;display:flex;flex-direction:column;justify-content:flex-start">
             <h3 style="font-family:var(--display);font-size:21px;font-weight:600;letter-spacing:-.02em">Head of Operations</h3>
             <p style="margin-top:6px;font-size:14.5px;color:var(--text-2)">Apple Developer’s Society — Singapore Polytechnic · Executive Committee</p>
             <ul style="margin-top:18px;display:grid;gap:9px">
@@ -502,30 +549,6 @@ button,input,textarea,select{font:inherit;color:inherit}
         </div>
       </div>
     </section>
-
-    <sc-if value="{{ showRecs }}" hint-placeholder-val="{{ true }}">
-      <section aria-labelledby="recs-h" style="padding:var(--sec-gap) 0 0">
-        <div style="display:flex;align-items:baseline;gap:14px">
-          <span style="font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.08em">[ — ]</span>
-          <h2 id="recs-h" style="font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.03em">What Others Say</h2>
-          <span aria-hidden="true" style="flex:1;height:1px;background:var(--border)"></span>
-        </div>
-        <p style="margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--muted)">Paraphrased from public recommendations on LinkedIn.</p>
-        <div style="margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
-          <sc-for list="{{ recommendations }}" as="r" hint-placeholder-count="2">
-            <figure style="margin:0;padding:clamp(24px,3vw,30px);border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow)">
-              <span aria-hidden="true" style="font-family:var(--display);font-size:34px;line-height:1;color:var(--teal-bright)">“</span>
-              <blockquote style="margin:8px 0 0;font-size:15.5px;line-height:1.72;color:var(--text-2);text-wrap:pretty">{{ r.quote }}</blockquote>
-              <figcaption style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:11px">
-                <span aria-hidden="true" style="width:34px;height:34px;border-radius:50%;background:var(--bg-alt);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--teal)">{{ r.initials }}</span>
-                <span style="font-size:14.5px;font-weight:600;color:var(--text)">{{ r.name }}</span>
-                <span style="margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted)">LinkedIn</span>
-              </figcaption>
-            </figure>
-          </sc-for>
-        </div>
-      </section>
-    </sc-if>
 
     <section id="contact" style="padding:var(--sec-gap) 0 0">
       <div style="display:flex;align-items:baseline;gap:14px">
@@ -590,7 +613,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C9D9E4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#C9D9E4&quot;,&quot;#AFC6D5&quot;,&quot;#9FB8C8&quot;,&quot;#E9EEF2&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;comfortable&quot;,&quot;options&quot;:[&quot;comfortable&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showRecommendations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C9D9E4&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#C9D9E4&quot;,&quot;#AFC6D5&quot;,&quot;#9FB8C8&quot;,&quot;#E9EEF2&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;comfortable&quot;,&quot;options&quot;:[&quot;comfortable&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
 const PRIMARY = [
   { label: "About", href: "#about", id: "about" },
   { label: "Experience", href: "#experience", id: "experience" },
@@ -725,11 +748,6 @@ const COMMUNITY = [
   { org: "SP Outstanding Talent Programme", role: "Member", date: "", points: ["Participated in seminars and webinars involving industry leaders."] },
   { org: "Mid-Autumn Festival at Tengah", role: "Volunteer", date: "Oct 2025", points: ["Managed the painting station and assisted with venue setup.", "Prepared paint and lantern materials and supported participants during the activity.", "Developed communication, time-management, teamwork and collaboration skills."] }
 ];
-const RECS = [
-  { name: "King Shelton", initials: "KS", quote: "Describes me as hardworking and driven, someone who takes initiative rather than waiting to be told. Notes that I adapt quickly, stay resourceful when things change, and approach problems both analytically and creatively — while communicating clearly, collaborating well and taking responsibility for improving." },
-  { name: "Kalivaradhan Aadharsh", initials: "KA", quote: "Describes me as diligent and dependable to work alongside — detail-oriented and analytical in how I approach tasks, creative in how I communicate ideas, and adaptable in fast-paced settings, while staying supportive of the rest of the team." }
-];
-
 class Component extends DCLogic {
   state = {
     active: "about", scrolled: false, menuOpen: false, moreOpen: false,
@@ -826,9 +844,6 @@ class Component extends DCLogic {
       hacxSkills: HACX_SKILLS,
       leadership: LEADERSHIP,
       community: COMMUNITY,
-      recommendations: RECS,
-      showRecs: this.props.showRecommendations !== false,
-
       visibleTerm: TERM.slice(0, s.termStep),
 
       projects: PROJECTS.map((p) => {
@@ -866,8 +881,9 @@ class Component extends DCLogic {
       moreExpanded: s.moreOpen ? "true" : "false",
       moreMenuStyle: "display:" + (s.moreOpen ? "block" : "none") + ";position:absolute;top:calc(100% + 6px);left:0;min-width:190px;padding:8px;border-radius:14px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow-lift)",
 
-      themeIcon: dark ? "☀" : "☾",
-      themeLabel: dark ? "Switch to light theme" : "Switch to dark theme",
+      moonIconDisplay: dark ? "none" : "block",
+      sunIconDisplay: dark ? "block" : "none",
+      themeLabel: dark ? "Switch to light mode" : "Switch to dark mode",
       toggleTheme: this.toggleTheme,
 
       toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
