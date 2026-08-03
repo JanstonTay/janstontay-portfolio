@@ -357,7 +357,7 @@ button,input,textarea,select{font:inherit;color:inherit}
                   <span style="font-size:14px;font-weight:600;color:var(--text)">{{ p.role }}</span>
                 </div>
                 <sc-for list="{{ p.links }}" as="ln" hint-placeholder-count="0">
-                  <a href="{{ ln.url }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:1px solid var(--border);background:var(--nested);font-size:13.5px;font-weight:600;color:var(--text)" style-hover="border-color:var(--teal);color:var(--teal)">{{ ln.label }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px">↗</span></a>
+                  <a href="{{ ln.url }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:1px solid {{ ln.borderColor }};background:{{ ln.background }};font-size:13.5px;font-weight:600;color:{{ ln.color }};transition:background-color .2s ease,border-color .2s ease,color .2s ease" style-hover="background:{{ ln.hoverBackground }};border-color:{{ ln.hoverBorderColor }};color:{{ ln.hoverColor }}">{{ ln.label }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px">↗</span></a>
                 </sc-for>
                 <button type="button" onClick="{{ p.toggle }}" aria-expanded="{{ p.expanded }}" aria-controls="{{ p.panelId }}" style="margin-left:auto;display:inline-flex;align-items:center;gap:9px;padding:10px 17px;border-radius:11px;border:1px solid var(--border);background:var(--bg-alt);font-size:13.5px;font-weight:600;color:var(--text);cursor:pointer;transition:border-color .2s ease" style-hover="border-color:var(--teal);color:var(--teal)">{{ p.cta }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px;color:var(--text-2);transform:{{ p.arrow }};transition:transform .3s ease">↓</span></button>
               </div>
@@ -944,7 +944,18 @@ class Component extends DCLogic {
           { label: "View Live Project", url: p.liveUrl },
           { label: "View Repository", url: p.repositoryUrl },
           { label: "View Case Study", url: p.caseStudyUrl }
-        ].filter(l => !!l.url);
+        ].filter(l => !!l.url).map((link) => {
+          const isLiveProject = link.label === "View Live Project";
+          return {
+            ...link,
+            background: isLiveProject ? "var(--cta-bg)" : "var(--nested)",
+            color: isLiveProject ? "var(--cta-fg)" : "var(--text)",
+            borderColor: isLiveProject ? "var(--cta-bg)" : "var(--border)",
+            hoverBackground: isLiveProject ? "var(--btn-bg)" : "var(--nested)",
+            hoverColor: isLiveProject ? "var(--btn-fg)" : "var(--teal)",
+            hoverBorderColor: isLiveProject ? "var(--btn-bg)" : "var(--teal)"
+          };
+        });
         return {
           ...p,
           title: p.subtitle ? p.title + " — " + p.subtitle : p.title,
