@@ -613,8 +613,8 @@ button,input,textarea,select{font:inherit;color:inherit}
         <h2 style="font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-.03em">Let’s build something</h2>
         <span aria-hidden="true" style="flex:1;height:1px;background:var(--border)"></span>
       </div>
-      <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:18px;align-items:stretch">
-        <div style="flex:1 1 360px;min-width:min(100%,300px);padding:clamp(26px,3vw,36px);border-radius:22px;background:var(--dark);color:var(--on-dark);border:1px solid var(--border-dark);box-shadow:0 30px 70px -36px rgba(3,14,25,.8)">
+      <div style="margin-top:36px">
+        <div style="width:100%;padding:clamp(26px,3vw,36px);border-radius:22px;background:var(--dark);color:var(--on-dark);border:1px solid var(--border-dark);box-shadow:0 30px 70px -36px rgba(3,14,25,.8)">
           <h3 style="font-family:var(--display);font-size:clamp(24px,3vw,32px);font-weight:600;letter-spacing:-.025em;line-height:1.15">Open to internships and collaborations.</h3>
           <p style="margin-top:16px;max-width:46ch;font-size:15.5px;line-height:1.7;color:var(--on-dark-2);text-wrap:pretty">I’m interested in opportunities where I can continue developing practical software, contribute to meaningful projects and learn from experienced teams. Feel free to reach out.</p>
           <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:10px">
@@ -622,38 +622,14 @@ button,input,textarea,select{font:inherit;color:inherit}
             <a href="{{ emailHref }}" aria-label="Email {{ emailAddress }}" style="display:inline-flex;align-items:center;padding:11px 17px;border-radius:11px;border:1px solid var(--border-dark);background:none;color:var(--on-dark);font-size:14px;font-weight:600" style-hover="border-color:var(--on-dark-accent);color:var(--on-dark-accent)">Email ↗</a>
             <a href="https://wa.me/6597964073?text=Hi%20Janston%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer" aria-label="Message Janston on WhatsApp at +65 9796 4073" title="WhatsApp +65 9796 4073" style="display:inline-flex;align-items:center;padding:11px 17px;border-radius:11px;border:1px solid #25D366;background:#25D366;color:#0B1D30;font-size:14px;font-weight:700" style-hover="border-color:#20BD5A;background:#20BD5A;color:#0B1D30">WhatsApp ↗</a>
           </div>
-          <p style="margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--teal-bright)">Singapore · GMT+8</p>
         </div>
-
-        <form onSubmit="{{ onSubmit }}" style="flex:1 1 360px;min-width:min(100%,300px);padding:clamp(26px,3vw,34px);border-radius:22px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px">
-            <div style="display:flex;flex-direction:column;gap:7px">
-              <label for="cf-name" style="font-size:13px;font-weight:600;color:var(--text-2)">Name</label>
-              <input id="cf-name" name="name" type="text" required="" value="{{ form.name }}" onChange="{{ onField }}" placeholder="Your name" style="padding:12px 14px;border-radius:11px;border:1px solid var(--border);background:var(--input);font-size:14.5px" style-focus="border-color:var(--teal);box-shadow:0 0 0 3px rgba(201,217,228,0.18)" />
-            </div>
-            <div style="display:flex;flex-direction:column;gap:7px">
-              <label for="cf-email" style="font-size:13px;font-weight:600;color:var(--text-2)">Email</label>
-              <input id="cf-email" name="email" type="email" required="" value="{{ form.email }}" onChange="{{ onField }}" placeholder="you@company.com" style="padding:12px 14px;border-radius:11px;border:1px solid var(--border);background:var(--input);font-size:14.5px" style-focus="border-color:var(--teal);box-shadow:0 0 0 3px rgba(201,217,228,0.18)" />
-            </div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px">
-            <label for="cf-subject" style="font-size:13px;font-weight:600;color:var(--text-2)">Subject</label>
-            <input id="cf-subject" name="subject" type="text" value="{{ form.subject }}" onChange="{{ onField }}" placeholder="Internship opportunity" style="padding:12px 14px;border-radius:11px;border:1px solid var(--border);background:var(--input);font-size:14.5px" style-focus="border-color:var(--teal);box-shadow:0 0 0 3px rgba(201,217,228,0.18)" />
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px">
-            <label for="cf-message" style="font-size:13px;font-weight:600;color:var(--text-2)">Message</label>
-            <textarea id="cf-message" name="message" rows="5" required="" value="{{ form.message }}" onChange="{{ onField }}" placeholder="A short note about the role or project…" style="padding:12px 14px;border-radius:11px;border:1px solid var(--border);background:var(--input);font-size:14.5px;resize:vertical;font-family:var(--sans)" style-focus="border-color:var(--teal);box-shadow:0 0 0 3px rgba(201,217,228,0.18)"></textarea>
-          </div>
-          <button type="submit" style="margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 20px;border-radius:12px;border:1px solid var(--border-strong);background:var(--btn-bg);color:var(--btn-fg);font-size:14.5px;font-weight:600;cursor:pointer;transition:transform .2s ease" style-hover="transform:translateY(-2px)">Send via email client<span aria-hidden="true" style="font-family:var(--mono);font-size:12px;color:var(--teal-bright)">→</span></button>
-          <p role="status" style="font-family:var(--mono);font-size:11.5px;line-height:1.5;color:{{ formNoteColor }}">{{ formNote }}</p>
-        </form>
       </div>
     </section>
 
     <footer style="margin-top:clamp(70px,8vw,110px);padding:34px 0 44px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;justify-content:space-between">
       <div>
         <div style="font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:-.01em">Janston Tay</div>
-        <p style="margin-top:6px;font-size:13.5px;color:var(--text-2);line-height:1.6">Information Technology Student · Singapore Polytechnic<br />Singapore · GMT+8</p>
+        <p style="margin-top:6px;font-size:13.5px;color:var(--text-2);line-height:1.6">Information Technology Student · Singapore Polytechnic</p>
       </div>
       <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
         <a href="https://www.linkedin.com/in/janstontay/" target="_blank" rel="noopener" style="padding:8px 13px;border-radius:10px;border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text-2)" style-hover="border-color:var(--teal);color:var(--teal)">LinkedIn</a>
@@ -853,7 +829,7 @@ class Component extends DCLogic {
   state = {
     active: "about", scrolled: false, menuOpen: false, moreOpen: false,
     narrow: false, theme: (function(){ try { var s = localStorage.getItem("jt-theme"); if (s) return s; } catch(e){} return (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark"; })(), termStep: 0, open: {}, showFab: false, certificate: null,
-    form: { name: "", email: "", subject: "", message: "" }, note: ""
+    note: ""
   };
 
   componentDidMount() {
@@ -1022,19 +998,7 @@ class Component extends DCLogic {
       scrollTop: () => window.scrollTo({ top: 0, behavior: "smooth" }),
       fabStyle: "position:fixed;right:22px;bottom:22px;z-index:70;width:46px;height:46px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:16px;cursor:pointer;box-shadow:var(--shadow-lift);opacity:" + (s.showFab ? "1" : "0") + ";pointer-events:" + (s.showFab ? "auto" : "none") + ";transition:opacity .3s ease",
 
-      resumeNotice: () => this.notice("// résumé placeholder — drop your PDF in and link it here"),
-
-      form: s.form,
-      onField: (e) => { const { name, value } = e.target; this.setState(st => ({ form: { ...st.form, [name]: value } })); },
-      onSubmit: (e) => {
-        e.preventDefault();
-        const f = this.state.form;
-        const body = "From: " + f.name + " (" + f.email + ")\n\n" + f.message;
-        window.location.href = "mailto:" + emailAddress + "?subject=" + encodeURIComponent(f.subject || "Portfolio enquiry") + "&body=" + encodeURIComponent(body);
-        this.notice("// opening your email client…");
-      },
-      formNote: s.note || "// sends through your own email client — no message is stored here",
-      formNoteColor: s.note ? "var(--teal)" : "var(--muted)"
+      resumeNotice: () => this.notice("// résumé placeholder — drop your PDF in and link it here")
     };
   }
 }
