@@ -917,7 +917,7 @@ class Component extends DCLogic {
       else if (el.tagName === "H3" && el.nextElementSibling) bottom = el.nextElementSibling.getBoundingClientRect().bottom;
       const avail = window.innerHeight - navH;
       const height = bottom - top;
-      const offset = height + 48 <= avail ? (avail - height) / 2 : 24;
+      const offset = height <= avail ? (avail - height) / 2 : 24;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       return Math.max(0, Math.min(window.scrollY + top - navH - offset, max));
     };
