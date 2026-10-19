@@ -902,6 +902,49 @@ class Component extends DCLogic {
     window.addEventListener("scroll", this._onScroll, { passive: true });
     window.addEventListener("resize", this._onResize);
     window.addEventListener("keydown", this._onKey);
+
+    // In-page links: centre the target in the space below the sticky navbar when it fits,
+    // otherwise land with its heading just under the navbar.
+    this._anchorY = (id) => {
+      if (id === "top") return 0;
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const header = document.querySelector("header");
+      const navH = header ? header.getBoundingClientRect().height : 0;
+      const r = el.getBoundingClientRect();
+      let top = r.top, bottom = r.bottom;
+      if (el.tagName === "SECTION") top += parseFloat(getComputedStyle(el).paddingTop) || 0;
+      else if (el.tagName === "H3" && el.nextElementSibling) bottom = el.nextElementSibling.getBoundingClientRect().bottom;
+      const avail = window.innerHeight - navH;
+      const height = bottom - top;
+      const offset = height + 48 <= avail ? (avail - height) / 2 : 24;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      return Math.max(0, Math.min(window.scrollY + top - navH - offset, max));
+    };
+    this._scrollToAnchor = (id, smooth) => {
+      const y = this._anchorY(id);
+      if (y === null) return false;
+      const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: y, behavior: smooth && !reduceMotion ? "smooth" : "auto" });
+      return true;
+    };
+    this._onAnchorClick = (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href").slice(1);
+      if (!id || this._anchorY(id) === null) return;
+      e.preventDefault();
+      // Close the mobile menu and unlock body scrolling first: unlocking it mid-scroll would cancel a smooth scroll
+      if (this.state.menuOpen || this.state.moreOpen) this.setState({ menuOpen: false, moreOpen: false });
+      document.body.style.overflow = this.state.certificate ? "hidden" : "";
+      this._scrollToAnchor(id, true);
+      if (location.hash !== "#" + id) history.pushState(null, "", "#" + id);
+    };
+    this._onPopState = () => { if (location.hash) this._scrollToAnchor(location.hash.slice(1), true); };
+    document.addEventListener("click", this._onAnchorClick);
+    window.addEventListener("popstate", this._onPopState);
+    if (location.hash) this._hashTimer = setTimeout(() => this._scrollToAnchor(location.hash.slice(1), false), 350);
     this._onResize(); this._onScroll();
 
     if (reduce) this.setState({ termStep: TERM.length });
@@ -934,6 +977,9 @@ class Component extends DCLogic {
     window.removeEventListener("scroll", this._onScroll);
     window.removeEventListener("resize", this._onResize);
     window.removeEventListener("keydown", this._onKey);
+    document.removeEventListener("click", this._onAnchorClick);
+    window.removeEventListener("popstate", this._onPopState);
+    clearTimeout(this._hashTimer);
     if (this._io) this._io.disconnect();
     (this._timers || []).forEach(clearTimeout);
     document.body.style.overflow = "";
