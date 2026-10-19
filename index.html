@@ -464,7 +464,7 @@ button,input,textarea,select{font:inherit;color:inherit}
         <span style="font-family:var(--mono);font-size:11.5px;color:var(--teal);letter-spacing:.08em">[ 05.1 ]</span>Certifications
       </h3>
       <div style="margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
-        <sc-for list="{{ certs }}" as="c" hint-placeholder-count="3">
+        <sc-for list="{{ certs }}" as="c" hint-placeholder-count="4">
           <div style="padding:22px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-3px);box-shadow:var(--shadow-lift)">
             <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
               <span style="font-family:var(--mono);font-size:11px;color:var(--text-2)">{{ c.issuer }}</span>
@@ -476,6 +476,9 @@ button,input,textarea,select{font:inherit;color:inherit}
                 <li style="padding:5px 10px;border-radius:7px;background:var(--bg-alt);font-size:12.5px;color:var(--text-2)">{{ s }}</li>
               </sc-for>
             </ul>
+            <sc-if value="{{ c.url }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ c.url }}" target="_blank" rel="noopener noreferrer" style="margin-top:auto;padding-top:6px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--teal-bright)" style-hover="color:var(--teal)">View Credential<span aria-hidden="true" style="font-family:var(--mono);font-size:11px">↗</span></a>
+            </sc-if>
           </div>
         </sc-for>
       </div>
@@ -488,6 +491,26 @@ button,input,textarea,select{font:inherit;color:inherit}
         <span aria-hidden="true" style="flex:1;height:1px;background:var(--border)"></span>
       </div>
       <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:0;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);overflow:hidden">
+        <div style="flex:1 1 300px;min-width:min(100%,280px);padding:clamp(24px,3vw,32px)">
+          <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center">
+            <span style="padding:5px 11px;border-radius:999px;background:var(--cta-bg);font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cta-fg)">2nd Runner-up · Polytechnic track</span>
+            <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Team Project</span>
+            <span style="font-family:var(--mono);font-size:11.5px;color:var(--gold)">Aug 2026 – Sep 2026</span>
+          </div>
+          <h3 style="margin-top:15px;font-family:var(--display);font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-.02em">Dell InnovateFest 2026</h3>
+          <p style="margin-top:8px;font-size:15px;color:var(--text-2);line-height:1.65">A six-week "hackathon with a heart" run by Dell's APJ AI Innovation Hub, on a problem statement from SPD. Our team built <strong style="font-weight:600;color:var(--text)">MEANT</strong>, an assistant that helps AAC users keep up with live conversation, and placed 2nd Runner-up in the Polytechnic track out of 52 finalists from 10 universities and polytechnics. We presented it at the National Gallery Singapore.</p>
+          <a href="https://www.credential.net/7112ef56-1e29-452b-a4c3-558ac19ed6e1" target="_blank" rel="noopener noreferrer" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:1px solid var(--cta-bg);background:var(--cta-bg);color:var(--cta-fg);font-size:13.5px;font-weight:700" style-hover="background:var(--btn-bg);border-color:var(--btn-bg);color:var(--btn-fg)">View Credential <span aria-hidden="true" style="font-family:var(--mono);font-size:11px">↗</span></a>
+        </div>
+        <div style="flex:1 1 260px;min-width:min(100%,260px);padding:clamp(24px,3vw,32px);background:var(--bg-alt);border-left:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">Skills developed</div>
+          <ul style="margin-top:13px;display:grid;gap:8px">
+            <sc-for list="{{ meantSkills }}" as="s" hint-placeholder-count="6">
+              <li style="display:flex;gap:10px;font-size:14px;color:var(--text-2)"><span aria-hidden="true" style="flex:none;margin-top:8px;width:5px;height:5px;border-radius:50%;background:var(--teal)"></span>{{ s }}</li>
+            </sc-for>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:0;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);overflow:hidden">
         <div style="flex:1 1 300px;min-width:min(100%,280px);padding:clamp(24px,3vw,32px)">
           <div style="display:flex;flex-wrap:wrap;gap:9px;align-items:center">
             <span style="padding:5px 11px;border-radius:999px;background:var(--bg-alt);font-family:var(--mono);font-size:11px;color:var(--text-2)">Participant</span>
@@ -714,8 +737,23 @@ const INTERN_POINTS = [
 const INTERN_TAGS = ["Python", "UiPath", "Generative AI", "Process Digitalisation", "Data & Analytics", "Technical Support"];
 const PROJECTS = [
   {
+    id: "meant", repositoryUrl: "", liveUrl: "", caseStudyUrl: "", credentialUrl: "https://www.credential.net/7112ef56-1e29-452b-a4c3-558ac19ed6e1",
+    num: "[ 01 ]", title: "MEANT", subtitle: "AI Conversation Assistant for AAC Users",
+    category: "Hackathon · Team Project · 2nd Runner-up", date: "Aug 2026 – Sep 2026",
+    role: "Team member",
+    summary: "An assistant for people who rely on AAC (augmentative and alternative communication) to speak. It listens to the conversation, suggests replies phrased the way the user would say them, and reads the chosen reply aloud in a voice modelled on their own. Built in six weeks for Dell InnovateFest 2026.",
+    tags: ["Artificial Intelligence", "Accessibility", "Voice", "User Research"],
+    details: [
+      { label: "Problem", text: "Typing one sentence on an AAC app can take close to a minute, and by then most conversations have moved on. SPD set the problem statement." },
+      { label: "What we built", items: ["Listens to the ongoing conversation", "Suggests replies in the user's own phrasing", "Reads the chosen reply aloud in a voice modelled on theirs", "The user still decides what gets said"] },
+      { label: "Working with users", text: "Sayfullah, who has used AAC for 13 years, tested MEANT with us throughout. When early suggestions did not sound like him, we rebuilt a large part of the product." },
+      { label: "Outcome", items: ["2nd Runner-up, Polytechnic track, out of 52 finalists from 10 universities and polytechnics", "Presented at the National Gallery Singapore", "Mentored by engineers from Dell and PSA"] },
+      { label: "Lessons learned", items: ["Getting software to work and making it work for the person using it are separate questions", "Cutting an over-ambitious idea down to what matters", "Taking blunt user feedback and acting on it"] }
+    ]
+  },
+  {
     id: "polyconnect", repositoryUrl: "", liveUrl: "https://www.polyconnect.site/", caseStudyUrl: "",
-    num: "[ 01 ]", title: "Poly Connect", subtitle: "Student Community Platform",
+    num: "[ 02 ]", title: "Poly Connect", subtitle: "Student Community Platform",
     category: "Full-Stack Development · Student Platform", date: "Apr 2026 – Aug 2026",
     role: "Full-stack development",
     summary: "A responsive community platform that helps students across Singapore’s five polytechnics discover people, form teams, join activities and stay connected through chat.",
@@ -728,7 +766,7 @@ const PROJECTS = [
   },
   {
     id: "dinokingdom", repositoryUrl: "", liveUrl: "https://dino-kingdom.vercel.app/", caseStudyUrl: "",
-    num: "[ 02 ]", title: "DinoKingdom", subtitle: "Health and Wellness Game",
+    num: "[ 03 ]", title: "DinoKingdom", subtitle: "Health and Wellness Game",
     category: "Back-End Development · School Project", date: "Jan 2026 – Feb 2026",
     role: "Backend development",
     summary: "A dinosaur-themed web application developed for my Back-End Development module. The project focused on database management, API routes, user interactions and server-side logic.",
@@ -743,7 +781,7 @@ const PROJECTS = [
   },
   {
     id: "stubby", repositoryUrl: "", liveUrl: "https://stubby-matchmaking.vercel.app/", caseStudyUrl: "",
-    num: "[ 03 ]", title: "Stubby", subtitle: "Matchmaking Application",
+    num: "[ 04 ]", title: "Stubby", subtitle: "Matchmaking Application",
     category: "UI/UX Design · School Project", date: "Oct 2025 – Jan 2026",
     role: "UI/UX design & prototyping",
     summary: "A matchmaking web application taken from interface planning and prototyping through to a publicly deployed version on Vercel.",
@@ -757,7 +795,7 @@ const PROJECTS = [
   },
   {
     id: "point-cloud-annotation-studio", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
-    num: "[ 04 ]", title: "Point Cloud Annotation Studio", subtitle: "HacX Hackathon",
+    num: "[ 05 ]", title: "Point Cloud Annotation Studio", subtitle: "HacX Hackathon",
     category: "Hackathon · Team Project · Participant", date: "Sep 2025 – Nov 2025",
     role: "Team member — prototyping & integration",
     summary: "An open-source concept for real-time 3D point-cloud tagging, automated floor-plan generation and AI-assisted evidence analysis, built for the CS12 Forensic Mapping challenge.",
@@ -791,10 +829,12 @@ const SECONDARY_EDU_FACTS = [
 ];
 const MODULES = ["Front-End Web Development", "Back-End Web Development", "Software Engineering Practice", "Continuous Integration and Continuous Delivery", "Design Experience and User Interface", "Programming for Data Science", "Java Programming", "Database Systems", "Secure Coding"];
 const CERTS = [
+  { name: "Dell InnovateFest 2026 2nd Runner Up", issuer: "Dell Technologies", date: "Oct 2026", skills: ["Artificial Intelligence", "Cloud Native", "User Research", "Prototyping"], url: "https://www.credential.net/7112ef56-1e29-452b-a4c3-558ac19ed6e1" },
   { name: "Data Manipulation with pandas", issuer: "DataCamp", date: "Feb 2026", skills: ["pandas", "Data Manipulation"] },
   { name: "Intermediate Python", issuer: "DataCamp", date: "Feb 2026", skills: ["Python"] },
   { name: "Introduction to Python", issuer: "DataCamp", date: "Feb 2026", skills: ["Python", "Fundamentals"] }
 ];
+const MEANT_SKILLS = ["User research with AAC users", "AI solution design", "Cloud-native development", "Rapid prototyping", "Teamwork", "Pitching to judges"];
 const HACX_SKILLS = ["Geospatial mapping", "3D visualisation", "API integration", "Rapid prototyping", "Teamwork", "Technical presentation"];
 const FINTECH_SKILLS = ["FinTech problem solving", "AI solution design", "Wealth management", "Financial data analysis", "Risk assessment", "Teamwork"];
 const OCBC_SKILLS = ["Agentic AI concept design", "Customer journey design", "Personalisation", "Financial services", "Human-in-the-loop design", "Teamwork"];
@@ -933,6 +973,7 @@ class Component extends DCLogic {
       certs: CERTS,
       hacxSkills: HACX_SKILLS,
       fintechSkills: FINTECH_SKILLS,
+      meantSkills: MEANT_SKILLS,
       ocbcSkills: OCBC_SKILLS,
       leadership: LEADERSHIP,
       community: COMMUNITY,
@@ -942,7 +983,8 @@ class Component extends DCLogic {
         const links = [
           { label: "View Live Project", url: p.liveUrl },
           { label: "View Repository", url: p.repositoryUrl },
-          { label: "View Case Study", url: p.caseStudyUrl }
+          { label: "View Case Study", url: p.caseStudyUrl },
+          { label: "View Credential", url: p.credentialUrl }
         ].filter(l => !!l.url).map((link) => {
           const isLiveProject = link.label === "View Live Project";
           return {
