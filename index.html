@@ -481,7 +481,7 @@ button,input,textarea,select{font:inherit;color:inherit}
               </sc-for>
             </ul>
             <sc-if value="{{ c.url }}" hint-placeholder-val="{{ false }}">
-              <a href="{{ c.url }}" target="_blank" rel="noopener noreferrer" style="margin-top:auto;padding-top:6px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--teal-bright)" style-hover="color:var(--teal)">{{ c.linkLabel }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px">↗</span></a>
+              <a href="{{ c.url }}" target="_blank" rel="noopener noreferrer" style="margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:11px;border:1px solid var(--cta-bg);background:var(--cta-bg);color:var(--cta-fg);font-size:13px;font-weight:700;transition:background-color .2s ease,border-color .2s ease,color .2s ease" style-hover="background:var(--btn-bg);border-color:var(--btn-bg);color:var(--btn-fg)">{{ c.linkLabel }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px">↗</span></a>
             </sc-if>
           </div>
         </sc-for>
