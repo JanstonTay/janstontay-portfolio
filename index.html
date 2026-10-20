@@ -147,12 +147,14 @@ button,input,textarea,select{font:inherit;color:inherit}
               <span aria-hidden="true" style="position:absolute;left:12px;right:12px;bottom:2px;height:2px;border-radius:2px;background:var(--teal);transform-origin:left;transform:scaleX({{ item.underline }});transition:transform .28s cubic-bezier(.4,0,.2,1)"></span>
             </li>
           </sc-for>
-          <li style="position:relative" onMouseEnter="{{ openMore }}" onMouseLeave="{{ closeMore }}">
+          <li id="more-menu" style="position:relative" onMouseEnter="{{ hoverMoreIn }}" onMouseLeave="{{ hoverMoreOut }}">
             <button type="button" aria-haspopup="true" aria-expanded="{{ moreExpanded }}" onClick="{{ toggleMore }}" style="display:flex;align-items:center;gap:6px;padding:9px 12px;font-size:14px;font-weight:500;background:none;border:0;cursor:pointer;color:var(--text-2)" style-hover="color:var(--text)">More<span aria-hidden="true" style="font-size:10px;transform:translateY(1px)">▾</span></button>
             <div style="{{ moreMenuStyle }}">
-              <sc-for list="{{ moreNav }}" as="item" hint-placeholder-count="6">
-                <a href="{{ item.href }}" onClick="{{ closeMore }}" style="display:block;padding:9px 12px;border-radius:9px;font-size:13.5px;color:var(--text-2)" style-hover="background:var(--bg-alt);color:var(--text)">{{ item.label }}</a>
-              </sc-for>
+              <div style="min-width:190px;padding:8px;border-radius:14px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow-lift)">
+                <sc-for list="{{ moreNav }}" as="item" hint-placeholder-count="6">
+                  <a href="{{ item.href }}" onClick="{{ closeMore }}" style="display:block;padding:9px 12px;border-radius:9px;font-size:13.5px;color:var(--text-2)" style-hover="background:var(--bg-alt);color:var(--text)">{{ item.label }}</a>
+                </sc-for>
+              </div>
             </div>
           </li>
           <li>
@@ -886,7 +888,7 @@ const CERTIFICATES = {
 };
 class Component extends DCLogic {
   state = {
-    active: "about", scrolled: false, menuOpen: false, moreOpen: false,
+    active: "about", scrolled: false, menuOpen: false, moreOpen: false, morePinned: false,
     narrow: false, theme: (function(){ try { var s = localStorage.getItem("jt-theme"); if (s) return s; } catch(e){} return (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark"; })(), termStep: 0, open: {}, showFab: false, certificate: null,
     note: ""
   };
@@ -898,7 +900,7 @@ class Component extends DCLogic {
       this.setState({ scrolled: y > 12, showFab: y > 700 });
     };
     this._onResize = () => this.setState({ narrow: window.innerWidth < 1000 });
-    this._onKey = (e) => { if (e.key === "Escape") this.setState({ menuOpen: false, moreOpen: false, certificate: null }); };
+    this._onKey = (e) => { if (e.key === "Escape") this.setState({ menuOpen: false, moreOpen: false, morePinned: false, certificate: null }); };
     window.addEventListener("scroll", this._onScroll, { passive: true });
     window.addEventListener("resize", this._onResize);
     window.addEventListener("keydown", this._onKey);
@@ -936,13 +938,19 @@ class Component extends DCLogic {
       if (!id || this._anchorY(id) === null) return;
       e.preventDefault();
       // Close the mobile menu and unlock body scrolling first: unlocking it mid-scroll would cancel a smooth scroll
-      if (this.state.menuOpen || this.state.moreOpen) this.setState({ menuOpen: false, moreOpen: false });
+      if (this.state.menuOpen || this.state.moreOpen) this.setState({ menuOpen: false, moreOpen: false, morePinned: false });
       document.body.style.overflow = this.state.certificate ? "hidden" : "";
       this._scrollToAnchor(id, true);
       if (location.hash !== "#" + id) history.pushState(null, "", "#" + id);
     };
     this._onPopState = () => { if (location.hash) this._scrollToAnchor(location.hash.slice(1), true); };
     document.addEventListener("click", this._onAnchorClick);
+    this._onDocPointer = (e) => {
+      if (!this.state.moreOpen) return;
+      const more = document.getElementById("more-menu");
+      if (more && !more.contains(e.target)) { clearTimeout(this._moreTimer); this.setState({ moreOpen: false, morePinned: false }); }
+    };
+    document.addEventListener("pointerdown", this._onDocPointer);
     window.addEventListener("popstate", this._onPopState);
     if (location.hash) this._hashTimer = setTimeout(() => this._scrollToAnchor(location.hash.slice(1), false), 350);
     this._onResize(); this._onScroll();
@@ -978,6 +986,8 @@ class Component extends DCLogic {
     window.removeEventListener("resize", this._onResize);
     window.removeEventListener("keydown", this._onKey);
     document.removeEventListener("click", this._onAnchorClick);
+    document.removeEventListener("pointerdown", this._onDocPointer);
+    clearTimeout(this._moreTimer);
     window.removeEventListener("popstate", this._onPopState);
     clearTimeout(this._hashTimer);
     if (this._io) this._io.disconnect();
@@ -1090,7 +1100,7 @@ class Component extends DCLogic {
       menuLabel: s.menuOpen ? "Close menu" : "Open menu",
       mobilePanelStyle: "display:" + (s.narrow && s.menuOpen ? "block" : "none") + ";position:fixed;left:0;right:0;top:var(--nav-h);bottom:0;overflow-y:auto;background:var(--bg);border-top:1px solid var(--border);z-index:90",
       moreExpanded: s.moreOpen ? "true" : "false",
-      moreMenuStyle: "display:" + (s.moreOpen ? "block" : "none") + ";position:absolute;top:calc(100% + 6px);left:0;min-width:190px;padding:8px;border-radius:14px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow-lift)",
+      moreMenuStyle: "display:" + (s.moreOpen ? "block" : "none") + ";position:absolute;top:100%;left:0;padding-top:6px;z-index:10",
 
       moonIconDisplay: dark ? "none" : "block",
       sunIconDisplay: dark ? "block" : "none",
@@ -1099,9 +1109,11 @@ class Component extends DCLogic {
 
       toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
       closeMenu: () => this.setState({ menuOpen: false }),
-      toggleMore: () => this.setState(st => ({ moreOpen: !st.moreOpen })),
-      openMore: () => this.setState({ moreOpen: true }),
-      closeMore: () => this.setState({ moreOpen: false }),
+      // Hover opens the menu; a click pins it open until an item, Esc or a click elsewhere closes it
+      toggleMore: () => { clearTimeout(this._moreTimer); this.setState(st => (st.morePinned ? { moreOpen: false, morePinned: false } : { moreOpen: true, morePinned: true })); },
+      hoverMoreIn: () => { clearTimeout(this._moreTimer); if (!this.state.moreOpen) this.setState({ moreOpen: true }); },
+      hoverMoreOut: () => { clearTimeout(this._moreTimer); this._moreTimer = setTimeout(() => { if (!this.state.morePinned) this.setState({ moreOpen: false }); }, 200); },
+      closeMore: () => { clearTimeout(this._moreTimer); this.setState({ moreOpen: false, morePinned: false }); },
 
       scrollTop: () => window.scrollTo({ top: 0, behavior: "smooth" }),
       fabStyle: "position:fixed;right:22px;bottom:22px;z-index:70;width:46px;height:46px;border-radius:14px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:16px;cursor:pointer;box-shadow:var(--shadow-lift);opacity:" + (s.showFab ? "1" : "0") + ";pointer-events:" + (s.showFab ? "auto" : "none") + ";transition:opacity .3s ease",
