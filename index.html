@@ -391,7 +391,7 @@ button,input,textarea,select{font:inherit;color:inherit}
         <sc-for list="{{ skillGroups }}" as="g" hint-placeholder-count="6">
           <div style="padding:24px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease" style-hover="transform:translateY(-3px);box-shadow:var(--shadow-lift)">
             <div style="display:flex;align-items:center;gap:10px">
-              <span aria-hidden="true" style="width:30px;height:30px;border-radius:9px;background:var(--bg-alt);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)">{{ g.icon }}</span>
+              <span aria-hidden="true" style="width:30px;height:30px;border-radius:9px;background:var(--bg-alt);display:grid;place-items:center"><span style="width:16px;height:16px;background:var(--text-2);-webkit-mask:url({{ g.icon }}) center/contain no-repeat;mask:url({{ g.icon }}) center/contain no-repeat"></span></span>
               <h3 style="font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:-.01em">{{ g.title }}</h3>
             </div>
             <ul style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px">
@@ -824,12 +824,12 @@ const PROJECTS = [
   }
 ];
 const SKILLS = [
-  { icon: "{ }", title: "Programming Languages", items: ["Java", "Python", "JavaScript", "SQL"] },
-  { icon: "</>", title: "Frontend", items: ["HTML5", "CSS3", "React", "Tailwind CSS", "Bootstrap"] },
-  { icon: "srv", title: "Backend", items: ["Node.js", "Express", "REST APIs"] },
-  { icon: "db", title: "Database & Data", items: ["MySQL", "pandas"] },
-  { icon: "ops", title: "DevOps & Cloud", items: ["GitHub Actions (CI/CD)", "Docker", "AWS"] },
-  { icon: "⚙", title: "Tools", items: ["Git & GitHub", "Figma", "UiPath", "Generative AI Tools"] }
+  { icon: "assets/icons/languages.svg", title: "Programming Languages", items: ["Java", "Python", "JavaScript", "SQL"] },
+  { icon: "assets/icons/frontend.svg", title: "Frontend", items: ["HTML5", "CSS3", "React", "Tailwind CSS", "Bootstrap"] },
+  { icon: "assets/icons/backend.svg", title: "Backend", items: ["Node.js", "Express", "REST APIs"] },
+  { icon: "assets/icons/database.svg", title: "Database & Data", items: ["MySQL", "pandas"] },
+  { icon: "assets/icons/devops.svg", title: "DevOps & Cloud", items: ["GitHub Actions (CI/CD)", "Docker", "AWS"] },
+  { icon: "assets/icons/tools.svg", title: "Tools", items: ["Git & GitHub", "Figma", "UiPath", "Generative AI Tools"] }
 ];
 const SUPPORTING = ["Teamwork", "Problem Solving", "Pitching to Judges & Stakeholders", "Working to Tight Deadlines", "Debugging", "API Integration", "Rapid Prototyping", "Process Digitalisation"];
 const EDU_FACTS = [
