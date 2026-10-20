@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
   <!-- Square with only the top-left corner rounded -->
-  <path d="M26 0H64V64H0V26A26 26 0 0 1 26 0Z" fill="#10243A"/>
-  <g fill="none" stroke="#C9D9E4" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M16 0H64V64H0V16A16 16 0 0 1 16 0Z" fill="#10243A"/>
+  <g fill="none" stroke="#C9D9E4" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round">
     <!-- J -->
-    <path d="M18 21H29M26 21V38Q26 46 19 46Q15.5 46 14 42.5"/>
+    <path d="M12 17H26M23 17V38Q23 48 16 48Q11.5 48 9.5 43.5"/>
     <!-- T -->
-    <path d="M36 21H52M44 21V46"/>
+    <path d="M37 17H54M45.5 17V48"/>
   </g>
 </svg>
