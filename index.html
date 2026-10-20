@@ -35,7 +35,6 @@
   --name-grad:linear-gradient(90deg,#F7F8FA 0%,#C9D9E4 45%,#9FB8C8 100%);
   --text:#F7F8FA; --text-2:#DCE4EA; --muted:#B4C3CE;
   --chip-bg:rgba(201,217,228,0.16); --chip-fg:#F1F5F8;
-  --skill-bg:#C9D9E4; --skill-fg:#0B1D30; --skill-pill-bg:#C9D9E4; --skill-pill-fg:#0B1D30; --skill-pill-border:#C9D9E4;
   --teal:#C9D9E4; --teal-bright:#E9EEF2; --green:#9FB8C8; --gold:#AFC6D5;
   --dark:#0B1D30; --dark-2:#11283D;
   --border:rgba(220,232,240,0.22); --border-strong:rgba(220,232,240,0.34); --border-dark:rgba(220,232,240,0.18);
@@ -51,7 +50,6 @@
   --nested:#F8FAFA; --input:#FFFFFF;
   --text:#10263B; --text-2:#425D6D; --muted:#557181;
   --chip-bg:#D7E7EA; --chip-fg:#425D6D;
-  --skill-bg:#D7E7EA; --skill-fg:#425D6D; --skill-pill-bg:#F8FAFA; --skill-pill-fg:#425D6D; --skill-pill-border:rgba(36,79,102,0.18);
   --teal:#6B8796; --teal-bright:#173F58; --green:#6F91A3; --gold:#557181;
   --dark:#16303F; --dark-2:#1F4154; --on-dark:#EDF4F6; --on-dark-2:#9FB7C3;
   --term-accent:#C2D3DC; --term-path:#91ADBB; --on-dark-accent:#BCD0DA;
@@ -400,7 +398,7 @@ button,input,textarea,select{font:inherit;color:inherit}
             </div>
             <ul style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px">
               <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
-                <li style="padding:7px 12px;border-radius:9px;background:var(--skill-bg);font-size:13.5px;font-weight:500;color:var(--skill-fg)">{{ s }}</li>
+                <li style="padding:7px 12px;border-radius:9px;background:var(--chip-bg);font-size:13.5px;color:var(--chip-fg)">{{ s }}</li>
               </sc-for>
             </ul>
           </div>
@@ -410,7 +408,7 @@ button,input,textarea,select{font:inherit;color:inherit}
         <div style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">Supporting capabilities</div>
         <ul style="margin-top:13px;display:flex;flex-wrap:wrap;gap:8px">
           <sc-for list="{{ supporting }}" as="s" hint-placeholder-count="8">
-            <li style="padding:7px 13px;border-radius:999px;border:1px solid var(--skill-pill-border);background:var(--skill-pill-bg);font-size:13.5px;font-weight:500;color:var(--skill-pill-fg)">{{ s }}</li>
+            <li style="padding:7px 13px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-size:13.5px;color:var(--text-2)">{{ s }}</li>
           </sc-for>
         </ul>
       </div>
