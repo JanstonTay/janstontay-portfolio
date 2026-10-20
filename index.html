@@ -752,7 +752,7 @@ const INTERN_POINTS = [
 const INTERN_TAGS = ["Python", "UiPath", "Generative AI", "Process Digitalisation", "Data & Analytics", "Technical Support"];
 const PROJECTS = [
   {
-    id: "meant", repositoryUrl: "", liveUrl: "", caseStudyUrl: "", credentialUrl: "https://www.credential.net/7112ef56-1e29-452b-a4c3-558ac19ed6e1",
+    id: "meant", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
     num: "[ 01 ]", title: "MEANT", subtitle: "AI Conversation Assistant for AAC Users",
     category: "Hackathon · Team Project · 2nd Runner-up", date: "Aug 2026 – Sep 2026",
     role: "Team member",
@@ -1059,8 +1059,7 @@ class Component extends DCLogic {
         const links = [
           { label: "View Live Project", url: p.liveUrl },
           { label: "View Repository", url: p.repositoryUrl },
-          { label: "View Case Study", url: p.caseStudyUrl },
-          { label: "View Credential", url: p.credentialUrl }
+          { label: "View Case Study", url: p.caseStudyUrl }
         ].filter(l => !!l.url).map((link) => {
           const isLiveProject = link.label === "View Live Project";
           return {
