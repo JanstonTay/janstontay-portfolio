@@ -333,30 +333,37 @@ button,input,textarea,select{font:inherit;color:inherit}
       <div style="margin-top:40px;display:grid;gap:18px">
         <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
           <article style="border-radius:var(--r);border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .25s ease">
-            <div style="padding:clamp(22px,2.6vw,30px)">
-              <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px">
-                <span style="font-family:var(--mono);font-size:12px;color:var(--teal)">{{ p.num }}</span>
-                <h3 style="font-family:var(--display);font-size:clamp(20px,2.3vw,26px);font-weight:600;letter-spacing:-.02em">{{ p.title }}</h3>
-                <span style="margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--gold)">{{ p.date }}</span>
-              </div>
-              <div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:8px;align-items:center">
-                <span style="font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">{{ p.category }}</span>
-              </div>
-              <p style="margin-top:14px;max-width:70ch;font-size:15.5px;line-height:1.7;color:var(--text-2);text-wrap:pretty">{{ p.summary }}</p>
-              <ul style="margin-top:16px;display:flex;flex-wrap:wrap;gap:8px">
-                <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="4">
-                  <li style="padding:6px 12px;border-radius:8px;border:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--text-2)">{{ t }}</li>
-                </sc-for>
-              </ul>
-              <div style="margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;gap:16px">
-                <div style="display:flex;align-items:center;gap:9px">
+            <div style="display:flex;flex-direction:row-reverse;flex-wrap:wrap;align-items:center;gap:clamp(22px,3vw,40px);padding:clamp(18px,2.6vw,32px)">
+              <sc-if value="{{ p.image }}" hint-placeholder-val="{{ true }}">
+                <figure style="flex:1.15 1 460px;min-width:min(100%,280px);margin:0;border-radius:14px;border:1px solid var(--border);background:var(--bg-alt);overflow:hidden;aspect-ratio:16/10">
+                  <img src="{{ p.image }}" alt="{{ p.imageAlt }}" width="1440" height="1100" loading="lazy" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover;object-position:{{ p.imagePosition }}">
+                </figure>
+              </sc-if>
+              <div style="flex:1 1 400px;min-width:0;align-self:stretch;padding:clamp(4px,.6vw,8px) 0;display:flex;flex-direction:column">
+                <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;font-family:var(--mono);font-size:12px">
+                  <span style="color:var(--teal)">{{ p.num }}</span>
+                  <span style="color:var(--gold)">{{ p.date }}</span>
+                </div>
+                <h3 style="margin-top:12px;font-family:var(--display);font-size:clamp(22px,2.4vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.2;text-wrap:balance">{{ p.title }}</h3>
+                <div style="margin-top:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">{{ p.category }}</div>
+                <p style="margin-top:16px;max-width:70ch;font-size:15.5px;line-height:1.7;color:var(--text-2);text-wrap:pretty">{{ p.summary }}</p>
+                <ul style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px">
+                  <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="4">
+                    <li style="padding:6px 12px;border-radius:8px;border:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--text-2)">{{ t }}</li>
+                  </sc-for>
+                </ul>
+              <div style="margin-top:auto;padding-top:24px">
+                <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px">
                   <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)">My role</span>
                   <span style="font-size:14px;font-weight:600;color:var(--text)">{{ p.role }}</span>
                 </div>
+                <div style="margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px">
                 <sc-for list="{{ p.links }}" as="ln" hint-placeholder-count="0">
                   <a href="{{ ln.url }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;border:1px solid {{ ln.borderColor }};background:{{ ln.background }};font-size:13.5px;font-weight:600;color:{{ ln.color }};transition:background-color .2s ease,border-color .2s ease,color .2s ease" style-hover="background:{{ ln.hoverBackground }};border-color:{{ ln.hoverBorderColor }};color:{{ ln.hoverColor }}">{{ ln.label }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px">↗</span></a>
                 </sc-for>
-                <button type="button" onClick="{{ p.toggle }}" aria-expanded="{{ p.expanded }}" aria-controls="{{ p.panelId }}" style="margin-left:auto;display:inline-flex;align-items:center;gap:9px;padding:10px 17px;border-radius:11px;border:1px solid var(--cta-bg);background:var(--cta-bg);font-size:13.5px;font-weight:700;color:var(--cta-fg);cursor:pointer;transition:background-color .2s ease,border-color .2s ease,color .2s ease" style-hover="background:var(--btn-bg);border-color:var(--btn-bg);color:var(--btn-fg)">{{ p.cta }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px;color:inherit;transform:{{ p.arrow }};transition:transform .3s ease">↓</span></button>
+                <button type="button" onClick="{{ p.toggle }}" aria-expanded="{{ p.expanded }}" aria-controls="{{ p.panelId }}" style="display:inline-flex;align-items:center;gap:9px;padding:10px 17px;border-radius:11px;border:1px solid var(--cta-bg);background:var(--cta-bg);font-size:13.5px;font-weight:700;color:var(--cta-fg);cursor:pointer;transition:background-color .2s ease,border-color .2s ease,color .2s ease" style-hover="background:var(--btn-bg);border-color:var(--btn-bg);color:var(--btn-fg)">{{ p.cta }}<span aria-hidden="true" style="font-family:var(--mono);font-size:11px;color:inherit;transform:{{ p.arrow }};transition:transform .3s ease">↓</span></button>
+                </div>
+              </div>
               </div>
             </div>
             <div id="{{ p.panelId }}" style="{{ p.panelStyle }}">
@@ -755,6 +762,8 @@ const INTERN_TAGS = ["Python", "UiPath", "Generative AI", "Process Digitalisatio
 const PROJECTS = [
   {
     id: "meant", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
+    image: "assets/projects/meant.webp",
+    imageAlt: "MEANT app on a tablet: it heard \"Have you eaten yet?\" and offers four replies to tap, such as \"No, not yet\" and \"Let me check\"",
     num: "[ 01 ]", title: "MEANT", subtitle: "AI Conversation Assistant for AAC Users",
     category: "Hackathon · Team Project · 2nd Runner-up", date: "Aug 2026 – Sep 2026",
     role: "Team member",
@@ -770,6 +779,8 @@ const PROJECTS = [
   },
   {
     id: "polyconnect", repositoryUrl: "", liveUrl: "https://www.polyconnect.site/", caseStudyUrl: "",
+    image: "assets/projects/polyconnect.webp", imagePosition: "center",
+    imageAlt: "Poly Connect sign-up page asking which of the five polytechnics the student is from",
     num: "[ 02 ]", title: "Poly Connect", subtitle: "Student Community Platform",
     category: "Full-Stack Development · Student Platform", date: "Apr 2026 – Aug 2026",
     role: "Full-stack development",
@@ -783,6 +794,8 @@ const PROJECTS = [
   },
   {
     id: "dinokingdom", repositoryUrl: "", liveUrl: "https://dino-kingdom.vercel.app/", caseStudyUrl: "",
+    image: "assets/projects/dinokingdom.webp",
+    imageAlt: "DinoKingdom home page with the Welcome to Dinosaur Kingdom heading and game navigation",
     num: "[ 03 ]", title: "DinoKingdom", subtitle: "Health and Wellness Game",
     category: "Back-End Development · School Project", date: "Jan 2026 – Feb 2026",
     role: "Backend development",
@@ -797,8 +810,27 @@ const PROJECTS = [
     ]
   },
   {
+    id: "4d-explorer", repositoryUrl: "https://github.com/JanstonTay/4d-explorer", liveUrl: "https://janstontay.github.io/4d-explorer/", caseStudyUrl: "",
+    image: "assets/projects/4d-explorer.webp",
+    imageAlt: "4D Explorer lookup for the number 8888: 9 wins, last won on 19 January 2025, with a colour-coded table of wins by prize type",
+    num: "[ 04 ]", title: "4D Explorer", subtitle: "Singapore 4D Results Statistics",
+    category: "Personal Project · Data Visualisation", date: "Oct 2026 – Nov 2026",
+    role: "Solo project",
+    summary: "A statistics site covering every Singapore 4D draw since 1986. Look up any number to see how often it has won, as which prize and how long ago, or explore digit frequency and the gaps between wins. It describes history only and says plainly that it cannot predict the next draw.",
+    tags: ["React", "TypeScript", "Data Pipeline", "GitHub Actions"],
+    details: [
+      { label: "Objective", text: "Turn more than 5,500 draws of raw results into something anyone can explore, while being honest that past results say nothing about the next draw." },
+      { label: "Features", items: ["Number lookup with wins by prize type and time since the last win", "All 10,000 numbers, sortable and colour-coded", "Digit frequency, and actual gaps between wins compared with pure chance", "Bet calculator for Ordinary, System, iBet and Roll bets", "Light and dark themes"] },
+      { label: "Data pipeline", items: ["Python scripts turn the results CSV into the JSON the site loads", "A scheduled GitHub Actions job fetches new results after every draw", "Missing draws are backfilled one by one from each draw's results page"] },
+      { label: "Responsible design", text: "The home page explains that every draw is random and that a $1 bet returns well under $1 on average, and every page links to the National Problem Gambling Helpline." },
+      { label: "Stack", text: "React, TypeScript, React Router and Vite, with Python for the data scripts." }
+    ]
+  },
+  {
     id: "stubby", repositoryUrl: "", liveUrl: "https://stubby-matchmaking.vercel.app/", caseStudyUrl: "",
-    num: "[ 04 ]", title: "Stubby", subtitle: "Matchmaking Application",
+    image: "assets/projects/stubby.webp", imagePosition: "center",
+    imageAlt: "Stubby sign-in screen with the robot mascot logo",
+    num: "[ 05 ]", title: "Stubby", subtitle: "Matchmaking Application",
     category: "UI/UX Design · School Project", date: "Oct 2025 – Jan 2026",
     role: "UI/UX design & prototyping",
     summary: "A matchmaking web application taken from interface planning and prototyping through to a publicly deployed version on Vercel.",
@@ -812,7 +844,9 @@ const PROJECTS = [
   },
   {
     id: "point-cloud-annotation-studio", repositoryUrl: "", liveUrl: "", caseStudyUrl: "",
-    num: "[ 05 ]", title: "Point Cloud Annotation Studio", subtitle: "HacX Hackathon",
+    image: "assets/projects/point-cloud-floor-plan.webp", imagePosition: "center",
+    imageAlt: "Floor plan generated from the 3D warehouse scan, with the floor area, walls and pillars traced on a metre grid",
+    num: "[ 06 ]", title: "Point Cloud Annotation Studio", subtitle: "HacX Hackathon",
     category: "Hackathon · Team Project · Participant", date: "Sep 2025 – Nov 2025",
     role: "Team member — prototyping & integration",
     summary: "An open-source concept for real-time 3D point-cloud tagging, automated floor-plan generation and AI-assisted evidence analysis, built for the CS12 Forensic Mapping challenge.",
@@ -1078,6 +1112,7 @@ class Component extends DCLogic {
         return {
           ...p,
           title: p.subtitle ? p.title + " — " + p.subtitle : p.title,
+          imagePosition: p.imagePosition || "top center",
           expanded: open,
           links,
           noLinks: links.length === 0,
